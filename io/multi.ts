@@ -21,7 +21,7 @@ export class MultiReader {
       }
       if (nread > 0 || !eof) {
         if (eof && this.readers.length > 0) {
-          // Don't reaturn eof yet. More readers remain.
+          // Don't return eof yet. More readers remain.
           eof = false;
         }
         return {
