@@ -1,6 +1,6 @@
-# deno-commands
+# deno-libs
 
-* Small commands for [deno](https://github.com/denoland/deno).
+* Small libs for [deno](https://github.com/denoland/deno).
 
 ## Commands
 
