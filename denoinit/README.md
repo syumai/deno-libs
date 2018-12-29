@@ -10,6 +10,7 @@
 ## Usage
 
 ```
+$ cd ~/to/your/deno_project
 $ deno https://denopkg.com/syumai/deno-libs/denoinit/denoinit.ts --allow-write --allow-env --allow-run
 ```
 
