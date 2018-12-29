@@ -1,5 +1,5 @@
 import { stringsReader } from 'https://deno.land/x/net/util.ts';
-import { open, copy, env, cwd } from 'deno';
+import { open, copy, env, cwd, run, writeFile } from 'deno';
 
 async function main() {
   const { HOME } = env();
@@ -15,14 +15,13 @@ async function main() {
   }
 
   const depth = CWD.split('/').length - HOME.split('/').length;
-  console.log(depth);
 
   let denoHome = '.deno';
   for (let i = 0; i < depth; i++) {
     denoHome = '../' + denoHome;
   }
 
-  const file = await open(`${CWD}/tsconfig.json`, 'w+');
+  const tsconfigFile = await open(`${CWD}/tsconfig.json`, 'w+');
 
   const tsconfig = {
     compilerOptions: {
@@ -36,11 +35,14 @@ async function main() {
   };
 
   const config = stringsReader(JSON.stringify(tsconfig, null, 2));
-  copy(file, config);
-
+  copy(tsconfigFile, config);
   console.log('tsconfig.json successfully generated!');
-  console.log('Please run command below:');
-  console.log('$ deno --types > ~/.deno/deno.d.ts');
+
+  const types = run({ args: ['deno', '--types'], stdout: 'piped' });
+  const out = await types.output();
+  await writeFile(`${HOME}/.deno/deno.d.ts`, out);
+  types.close();
+  console.log('~/.deno/deno.d.ts successfully generated!');
 }
 
 main();
