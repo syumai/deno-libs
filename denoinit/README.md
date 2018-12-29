@@ -1,10 +1,6 @@
 # denoinit
 
-- denoinit initializes files for deno project.
-
-## Features
-
-- generate tsconfig.json for deno project.
+- denoinit generates tsconfig.json for deno project.
 
 ## Usage
 
