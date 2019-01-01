@@ -109,11 +109,10 @@ async function main() {
   const DENOGET_SRC = `${DENOGET_HOME}/src`;
   const DENOGET_BIN = `${DENOGET_HOME}/bin`;
 
-  if (args.length < 2) {
-    throw new Error('module path is not provided.');
+  const modulePath: string = args[args.length - 1];
+  if (!modulePath.startsWith('http')) {
+    throw new Error('module path is incorrect.');
   }
-
-  const modulePath = args[args.length - 1];
   const moduleName = path.basename(modulePath, '.ts');
 
   const wget = run({
