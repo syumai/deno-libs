@@ -6,6 +6,11 @@
 
 - Install executable script into ~/.deno/denoget/bin
 
+## Requirements for installing
+
+- deno
+- wget
+
 ## Install
 
 ```sh
@@ -29,8 +34,8 @@ denoinit # now you can execute deno script!
 
 - Add shebang to top of your deno script.
 
-```ts
-#!/usr/bin/env deno --allow-write --allow-env --allow-ru
+```sh
+#!/usr/bin/env deno --allow-write --allow-env --allow-run
 ```
 
 - Add execute permission to script.
