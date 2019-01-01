@@ -7,6 +7,11 @@
 - Generate `~/.deno/deno.d.ts`
 - Generate tsconfig.json
 
+## Supported Environments
+
+- macOS
+- Linux
+
 ## Usage
 
 ```

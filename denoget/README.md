@@ -6,6 +6,11 @@
 
 - Install executable script into ~/.deno/denoget/bin
 
+## Supported Environments
+
+- macOS
+- Linux
+
 ## Requirements for installing
 
 - deno
