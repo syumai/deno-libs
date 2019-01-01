@@ -1,17 +1,17 @@
+#!/usr/bin/env deno --allow-write --allow-env --allow-run
+
 import { stringsReader } from 'https://deno.land/x/net/util.ts';
-import { open, copy, env, cwd, run, writeFile } from 'deno';
+import { open, copy, env, cwd, run, writeFile, exit } from 'deno';
 
 async function main() {
   const { HOME } = env();
   if (!HOME) {
-    console.log('$HOME is not defined.');
-    return;
+    throw new Error('$HOME is not defined.');
   }
 
   const CWD = cwd();
   if (!CWD.match(HOME)) {
-    console.log('CWD is not in HOME.');
-    return;
+    throw new Error('CWD is not in HOME.');
   }
 
   const depth = CWD.split('/').length - HOME.split('/').length;
@@ -45,4 +45,9 @@ async function main() {
   console.log('~/.deno/deno.d.ts successfully generated!');
 }
 
-main();
+try {
+  main();
+} catch (e) {
+  console.log(e);
+  exit(1);
+}
