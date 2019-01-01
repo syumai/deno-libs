@@ -33,15 +33,11 @@ denoinit # now you can execute deno script!
 ## Create Executable Script
 
 - Add shebang to top of your deno script.
+  - This defines what permissions are needed.
 
 ```sh
 #!/usr/bin/env deno --allow-write --allow-env --allow-run
 ```
 
-- Add execute permission to script.
-
-```sh
-$ chmod +x xxx.ts
-```
-
+- Host script on the web.
 - Install script using denoget.
