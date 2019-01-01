@@ -4,20 +4,25 @@
 
 ## Features
 
-- Install executable deno script into ~/.deno/denoget/bin
+- Install executable script into ~/.deno/denoget/bin
 
 ## Install
 
 ```sh
-$ deno https://denopkg.com/syumai/deno-libs/denoget/denoget.ts --allow-write https://denopkg.com/syumai/deno-libs/denoget/denoget.ts
-$ echo 'export PATH="$HOME/.deno/denoget/bin:$PATH"' >> ~/.bashrc # change this to your shell
+# Install denoget
+deno https://denopkg.com/syumai/deno-libs/denoget/denoget.ts \
+  --allow-write --allow-env --allow-net --allow-run \
+  https://denopkg.com/syumai/deno-libs/denoget/denoget.ts
+
+# export denoget executable script path
+echo 'export PATH="$HOME/.deno/denoget/bin:$PATH"' >> ~/.bashrc # change this to your shell
 ```
 
 ## Usage
 
-```
-$ denoget https://denopkg.com/syumai/deno-libs/denoinit/denoinit.ts
-$ denoinit # now you can execute deno script!
+```sh
+denoget https://denopkg.com/syumai/deno-libs/denoinit/denoinit.ts
+denoinit # now you can execute deno script!
 ```
 
 ## Create Executable Script
@@ -25,7 +30,7 @@ $ denoinit # now you can execute deno script!
 - Add shebang to top of your deno script.
 
 ```ts
-#!/usr/bin/env deno --allow-write --allow-env --allow-r
+#!/usr/bin/env deno --allow-write --allow-env --allow-ru
 ```
 
 - Add execute permission to script.
