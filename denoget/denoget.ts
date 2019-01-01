@@ -7,11 +7,15 @@ import {
   mkdirSync,
   writeFileSync,
   exit,
+  stdout,
   stdin,
   run,
 } from 'deno';
 import * as path from 'https://deno.land/x/path/index.ts';
 import { parse } from './shebang.ts';
+
+const enc = new TextEncoder();
+const dec = new TextDecoder('utf-8');
 
 enum Permission {
   Unknown,
@@ -50,10 +54,11 @@ function getFlagFromPermission(perm: Permission): string {
 }
 
 async function readCharacter(): Promise<string> {
-  const byteArray = new Uint8Array(1);
+  const byteArray = new Uint8Array(1024);
   await stdin.read(byteArray);
   const dec = new TextDecoder();
-  return dec.decode(byteArray);
+  const line = dec.decode(byteArray);
+  return line[0];
 }
 
 async function grantPermission(perm: Permission): Promise<boolean> {
@@ -74,6 +79,8 @@ async function grantPermission(perm: Permission): Promise<boolean> {
       return false;
   }
   msg += 'Grant permanently? [yN]';
+  stdout.write(enc.encode(msg));
+
   const input = await readCharacter();
   if (input !== 'y' && input !== 'Y') {
     return false;
@@ -104,10 +111,13 @@ async function main() {
 
   const modulePath = args[args.length - 1];
   const moduleName = path.basename(modulePath, '.ts');
-  const enc = new TextEncoder();
 
-  const res = await fetch(modulePath);
-  const moduleText = await res.text();
+  const wget = run({
+    args: ['wget', '--quiet', '-O', '-', modulePath],
+    stdout: 'piped',
+  });
+  const moduleText = dec.decode(await wget.output());
+  console.log('Completed loading remote script.');
 
   createDirIfNotExists(DENOGET_HOME);
   createDirIfNotExists(DENOGET_SRC);
@@ -140,11 +150,18 @@ async function main() {
   const makeExecutable = run({ args: ['chmod', '+x', BIN_FILE_PATH] });
   await makeExecutable.status();
   makeExecutable.close();
+
+  console.log(`Successfully installed ${moduleName}.`);
 }
 
 try {
   main();
 } catch (e) {
+  const err = e as Error;
+  if (err.message) {
+    console.log(err.message);
+    exit(1);
+  }
   console.log(e);
   exit(1);
 }

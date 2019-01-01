@@ -11,10 +11,12 @@ class ShebangImpl implements Shebang {
     const parts = line.split(' ');
     const pathBase = parts.shift();
     if (pathBase.startsWith('#!')) {
-      throw new Error('failed to parse shebang');
+      this.path = pathBase.slice(2);
+      this.args = [...parts];
+    } else {
+      this.path = '';
+      this.args = [];
     }
-    this.path = pathBase.slice(2);
-    this.args = [...parts];
   }
 
   toString(): string {
