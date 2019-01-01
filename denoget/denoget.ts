@@ -151,6 +151,7 @@ async function main() {
     'deno',
     SRC_FILE_PATH,
     ...grantedPermissions.map(getFlagFromPermission),
+    '$@',
   ];
 
   writeFileSync(BIN_FILE_PATH, enc.encode(commands.join(' ')));

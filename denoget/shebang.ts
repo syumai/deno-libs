@@ -8,7 +8,7 @@ class ShebangImpl implements Shebang {
   public readonly args: Array<string>;
   constructor(shebang: string) {
     const line = shebang.split('\n')[0];
-    const parts = line.split(' ');
+    const parts = line.split(' ').map(s => s.trim());
     const pathBase = parts.shift();
     if (pathBase.startsWith('#!')) {
       this.path = pathBase.slice(2);
