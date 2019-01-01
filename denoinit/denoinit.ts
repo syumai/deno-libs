@@ -48,6 +48,11 @@ async function main() {
 try {
   main();
 } catch (e) {
+  const err = e as Error;
+  if (err.message) {
+    console.log(err.message);
+    exit(1);
+  }
   console.log(e);
   exit(1);
 }

@@ -61,8 +61,11 @@ async function readCharacter(): Promise<string> {
   return line[0];
 }
 
-async function grantPermission(perm: Permission): Promise<boolean> {
-  let msg = 'Deno requests ';
+async function grantPermission(
+  perm: Permission,
+  moduleName: string = 'Deno'
+): Promise<boolean> {
+  let msg = `${moduleName} requests `;
   switch (perm) {
     case Permission.Write:
       msg += 'write access to file system. ';
@@ -75,6 +78,7 @@ async function grantPermission(perm: Permission): Promise<boolean> {
       break;
     case Permission.Run:
       msg += 'access to run a subprocess. ';
+      break;
     default:
       return false;
   }
@@ -117,6 +121,11 @@ async function main() {
     stdout: 'piped',
   });
   const moduleText = dec.decode(await wget.output());
+  const status = await wget.status();
+  wget.close();
+  if (status.code !== 0) {
+    throw new Error(`Failed to get remote script: ${modulePath}`);
+  }
   console.log('Completed loading remote script.');
 
   createDirIfNotExists(DENOGET_HOME);
@@ -134,7 +143,7 @@ async function main() {
     if (permission === Permission.Unknown) {
       continue;
     }
-    if (!(await grantPermission(permission))) {
+    if (!(await grantPermission(permission, moduleName))) {
       continue;
     }
     grantedPermissions.push(permission);
