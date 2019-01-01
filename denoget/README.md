@@ -11,6 +11,13 @@
 - macOS
 - Linux
 
+## Usage
+
+```sh
+denoget https://denopkg.com/syumai/deno-libs/denoinit/denoinit.ts
+denoinit # now you can use installed command!
+```
+
 ## Requirements for installing
 
 - deno
@@ -26,13 +33,6 @@ deno https://denopkg.com/syumai/deno-libs/denoget/denoget.ts \
 
 # export denoget executable script path
 echo 'export PATH="$HOME/.deno/denoget/bin:$PATH"' >> ~/.bashrc # change this to your shell
-```
-
-## Usage
-
-```sh
-denoget https://denopkg.com/syumai/deno-libs/denoinit/denoinit.ts
-denoinit # now you can execute deno script!
 ```
 
 ## Create Executable Script
