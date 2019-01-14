@@ -1,6 +1,6 @@
 #!/usr/bin/env deno --allow-write --allow-env --allow-run
 
-import { stringsReader } from 'https://deno.land/x/net/util.ts';
+import { stringsReader } from 'https://deno.land/x/io/util.ts';
 import { open, copy, env, cwd, run, writeFile, exit } from 'deno';
 
 async function main() {
