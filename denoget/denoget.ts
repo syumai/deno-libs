@@ -11,7 +11,7 @@ import {
   stdin,
   run,
 } from 'deno';
-import * as path from 'https://deno.land/x/path/index.ts';
+import * as path from 'https://deno.land/x/fs/path/mod.ts';
 import { parse } from './shebang.ts';
 
 const enc = new TextEncoder();
