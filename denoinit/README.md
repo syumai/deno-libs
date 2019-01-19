@@ -40,8 +40,8 @@ denoinit
     "baseUrl": ".",
     "paths": {
       "deno": ["../../../../.deno/deno.d.ts"],
-      "http://*": ["../../../../.deno/deps/http/*"],
-      "https://*": ["../../../../.deno/deps/https/*"]
+      "https://*": ["../../../../.deno/deps/https/*"],
+      "http://*": ["../../../../.deno/deps/http/*"]
     }
   }
 }
