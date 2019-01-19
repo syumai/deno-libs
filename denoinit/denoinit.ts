@@ -28,8 +28,8 @@ async function main() {
       baseUrl: '.',
       paths: {
         deno: [`${denoHome}/deno.d.ts`],
-        'http://*': [`${denoHome}/deps/http/*`],
         'https://*': [`${denoHome}/deps/https/*`],
+        'http://*': [`${denoHome}/deps/http/*`],
       },
     },
   };
