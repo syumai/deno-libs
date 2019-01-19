@@ -32,6 +32,7 @@ async function main() {
         'http://*': [`${denoHome}/deps/http/*`],
       },
     },
+    include: ['./**/*.ts', './**/*.js'],
   };
 
   const config = stringsReader(JSON.stringify(tsconfig, null, 2));
