@@ -10,13 +10,17 @@ async function main() {
   }
 
   const CWD = cwd();
-  if (!CWD.match(HOME)) {
-    throw new Error('CWD is not in HOME.');
+
+  let depth;
+  let denoHome = '.deno';
+
+  if (CWD.match(HOME)) {
+    depth = CWD.split('/').length - HOME.split('/').length;
+  } else {
+    depth = CWD.split('/').length - 1;
+    denoHome = `${HOME.substring(1)}/${denoHome}`;
   }
 
-  const depth = CWD.split('/').length - HOME.split('/').length;
-
-  let denoHome = '.deno';
   for (let i = 0; i < depth; i++) {
     denoHome = '../' + denoHome;
   }
