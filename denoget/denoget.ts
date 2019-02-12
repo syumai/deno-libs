@@ -132,7 +132,9 @@ async function main() {
   createDirIfNotExists(DENOGET_BIN);
   const SRC_FILE_PATH = `${DENOGET_SRC}/${moduleName}.ts`;
   const BIN_FILE_PATH = `${DENOGET_BIN}/${moduleName}`;
-  writeFileSync(SRC_FILE_PATH, enc.encode(`import '${modulePath}';`), 0o600);
+  writeFileSync(SRC_FILE_PATH, enc.encode(`import '${modulePath}';`), {
+    perm: 0o600
+  });
 
   const shebang = parse(moduleText.split('\n')[0]);
 
