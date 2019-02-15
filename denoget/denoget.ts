@@ -1,4 +1,4 @@
-#!/usr/bin/env deno --allow-write --allow-env --allow-net --allow-run
+#!/usr/bin/env deno --allow-all
 
 import {
   args,
