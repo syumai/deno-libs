@@ -27,8 +27,7 @@ denoinit # now you can use installed command!
 
 ```sh
 # Install denoget
-deno https://denopkg.com/syumai/deno-libs/denoget/denoget.ts \
-  --allow-write --allow-env --allow-net --allow-run \
+deno -A https://denopkg.com/syumai/deno-libs/denoget/denoget.ts \
   https://denopkg.com/syumai/deno-libs/denoget/denoget.ts
 
 # export denoget executable script path

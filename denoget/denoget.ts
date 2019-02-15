@@ -1,4 +1,4 @@
-#!/usr/bin/env deno --allow-write --allow-env --allow-net --allow-run
+#!/usr/bin/env deno --allow-all
 
 import {
   args,
@@ -24,6 +24,7 @@ enum Permission {
   Net,
   Env,
   Run,
+  All,
 }
 
 function getPermissionFromFlag(flag: string): Permission {
@@ -38,6 +39,10 @@ function getPermissionFromFlag(flag: string): Permission {
       return Permission.Env;
     case '--allow-run':
       return Permission.Run;
+    case '--allow-all':
+      return Permission.All;
+    case '-A':
+      return Permission.All;
   }
   return Permission.Unknown;
 }
@@ -54,6 +59,8 @@ function getFlagFromPermission(perm: Permission): string {
       return '--allow-env';
     case Permission.Run:
       return '--allow-run';
+    case Permission.All:
+      return '--allow-all';
   }
   return '';
 }
@@ -86,6 +93,9 @@ async function grantPermission(
       break;
     case Permission.Run:
       msg += 'access to run a subprocess. ';
+      break;
+    case Permission.All:
+      msg += 'all available access. ';
       break;
     default:
       return false;
