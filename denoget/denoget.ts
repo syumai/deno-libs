@@ -19,6 +19,7 @@ const dec = new TextDecoder('utf-8');
 
 enum Permission {
   Unknown,
+  Read,
   Write,
   Net,
   Env,
@@ -27,6 +28,8 @@ enum Permission {
 
 function getPermissionFromFlag(flag: string): Permission {
   switch (flag) {
+    case '--allow-read':
+      return Permission.Read;
     case '--allow-write':
       return Permission.Write;
     case '--allow-net':
@@ -41,6 +44,8 @@ function getPermissionFromFlag(flag: string): Permission {
 
 function getFlagFromPermission(perm: Permission): string {
   switch (perm) {
+    case Permission.Read:
+      return '--allow-read';
     case Permission.Write:
       return '--allow-write';
     case Permission.Net:
@@ -67,6 +72,9 @@ async function grantPermission(
 ): Promise<boolean> {
   let msg = `${moduleName} requests `;
   switch (perm) {
+    case Permission.Read:
+      msg += 'read access to file system. ';
+      break;
     case Permission.Write:
       msg += 'write access to file system. ';
       break;
