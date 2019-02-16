@@ -101,7 +101,7 @@ async function grantPermission(
       return false;
   }
   msg += 'Grant permanently? [yN]';
-  stdout.write(enc.encode(msg));
+  console.log(msg);
 
   const input = await readCharacter();
   if (input !== 'y' && input !== 'Y') {
@@ -151,7 +151,7 @@ async function main() {
   const SRC_FILE_PATH = `${DENOGET_SRC}/${moduleName}.ts`;
   const BIN_FILE_PATH = `${DENOGET_BIN}/${moduleName}`;
   writeFileSync(SRC_FILE_PATH, enc.encode(`import '${modulePath}';`), {
-    perm: 0o600
+    perm: 0o600,
   });
 
   const shebang = parse(moduleText.split('\n')[0]);
