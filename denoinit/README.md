@@ -43,6 +43,7 @@ denoinit
       "https://*": ["../../../../.deno/deps/https/*"],
       "http://*": ["../../../../.deno/deps/http/*"]
     }
-  }
+  },
+  "include": ["./**/*.ts", "./**/*.js"]
 }
 ```
