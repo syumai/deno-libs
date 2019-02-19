@@ -21,7 +21,7 @@ deno https://denopkg.com/syumai/deno-libs/denoinit/denoinit.ts --allow-write --a
 
 ### Install
 
-- With [denoget](https://github.com/syumai/deno-libs/tree/master/denoget)
+- With [denoget](https://github.com/syumai/denoget)
 
 ```sh
 denoget https://denopkg.com/syumai/deno-libs/denoinit/denoinit.ts
