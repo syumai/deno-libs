@@ -1,4 +1,5 @@
-import { Reader, ReadResult } from 'deno';
+import Reader = Deno.Reader;
+import ReadResult = Deno.ReadResult;
 
 export class MultiReader {
   private readers: Array<Reader>;

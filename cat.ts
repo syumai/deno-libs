@@ -1,6 +1,6 @@
 #!/usr/bin/env deno
 
-import { cwd, open, copy, stdout, args } from 'deno';
+const { cwd, open, copy, stdout, args } = Deno;
 
 const dirPath = cwd();
 (async () => {
