@@ -43,7 +43,7 @@ async function main() {
   copy(tsconfigFile, config);
   console.log('tsconfig.json successfully generated!');
 
-  const types = run({ args: ['deno', '--types'], stdout: 'piped' });
+  const types = run({ args: ['deno', 'types'], stdout: 'piped' });
   const out = await types.output();
   await writeFile(`${HOME}/.deno/deno.d.ts`, out);
   types.close();
