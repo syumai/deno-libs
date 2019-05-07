@@ -16,7 +16,7 @@
 
 ```sh
 cd ~/to/your/deno_project
-deno https://denopkg.com/syumai/deno-libs/denoinit/denoinit.ts --allow-write --allow-env --allow-run
+deno --allow-write --allow-env --allow-run https://denopkg.com/syumai/deno-libs/denoinit/denoinit.ts
 ```
 
 ### Install
