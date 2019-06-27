@@ -21,11 +21,8 @@ deno --allow-write --allow-env --allow-run https://denopkg.com/syumai/deno-libs/
 
 ### Install
 
-- With [denoget](https://github.com/syumai/denoget)
-
 ```sh
-denoget https://denopkg.com/syumai/deno-libs/denoinit/denoinit.ts
-denoinit
+deno install denoinit https://denopkg.com/syumai/deno-libs/denoinit/denoinit.ts --allow-write --allow-env --allow-run
 ```
 
 ## Example output
