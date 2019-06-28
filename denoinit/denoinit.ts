@@ -1,7 +1,7 @@
 #!/usr/bin/env deno --allow-write --allow-env --allow-run --allow-read
 
 const { open, copy, env, cwd, run, writeFile, exit } = Deno;
-import { stringsReader } from 'https://deno.land/x/io/util.ts';
+import { stringsReader } from 'https://deno.land/std/io/util.ts';
 
 async function main() {
   const { HOME } = env();
