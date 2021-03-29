@@ -1,6 +1,6 @@
 // Author: syumai (https://github.com/syumai)
 
-import escape from 'https://deno.land/x/lodash/escape.js';
+import escape from 'https://deno.land/x/lodash@4.17.15-es/escape.js';
 
 export interface VNode {
   nodeName: string;
